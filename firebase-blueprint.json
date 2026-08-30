@@ -1,0 +1,77 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with role, language preference, and disaster preferences",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique user ID (auth uid)"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User email address"
+        },
+        "name": {
+          "type": "string",
+          "description": "User full name"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["general", "farmer", "fisherman", "traveler", "student"],
+          "description": "User persona role for tailored weather and safety advice"
+        },
+        "language": {
+          "type": "string",
+          "enum": ["en", "te", "hi"],
+          "description": "Preferred UI and announcement language"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Emergency contact phone number"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Account registration timestamp"
+        }
+      },
+      "required": ["id", "email", "name", "role", "language"]
+    },
+    "CommunityReport": {
+      "title": "CommunityReport",
+      "description": "Crowdsourced disaster warnings and safety advice",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userRole": { "type": "string" },
+        "location": { "type": "string" },
+        "lat": { "type": "number" },
+        "lon": { "type": "number" },
+        "hazardType": { "type": "string" },
+        "severity": { "type": "string" },
+        "title": { "type": "string" },
+        "suggestion": { "type": "string" },
+        "safetyAdvice": { "type": "string" },
+        "upvotes": { "type": "number" },
+        "downvotes": { "type": "number" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "userName", "location", "hazardType", "severity", "title", "suggestion"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile documents keyed by Firebase Auth UID"
+    },
+    "/communityReports/{reportId}": {
+      "schema": "CommunityReport",
+      "description": "Crowdsourced ground hazard reports"
+    }
+  }
+}

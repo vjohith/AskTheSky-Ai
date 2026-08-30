@@ -1,0 +1,6 @@
+{
+  "name": "AskTheSky AI",
+  "description": "AI-Powered Weather & Disaster Advisory System with Real-Time Risk Engine, Interactive Map, and Emergency Management.",
+  "requestFramePermissions": ["geolocation", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
